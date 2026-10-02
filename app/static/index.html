@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f1e8">
+    <title>Reference Desk</title>
+    <link rel="stylesheet" href="/static/styles.css?v=20261002">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Reference Desk home">
+          <span class="brand-mark">R<span>/</span></span>
+          <span class="brand-name">REFERENCE<br>DESK</span>
+        </a>
+        <div class="topbar-right">
+          <span class="eyebrow">RESEARCH TOOLS / 01</span>
+          <span class="service-state"><i></i><span id="service-label">Connecting</span></span>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="rail">
+          <div class="rail-label">WORKSPACE</div>
+          <button class="nav-item active" type="button" data-view="compose"><span class="nav-glyph">+</span> New reference</button>
+          <button class="nav-item" type="button" data-view="library"><span class="nav-glyph">▤</span> Saved library <span id="library-count" class="count">0</span></button>
+          <div class="rail-rule"></div>
+          <div class="rail-label">RECENTLY SAVED</div>
+          <div id="recent-list" class="recent-list"><span class="muted small">Your saved references will appear here.</span></div>
+          <div class="rail-bottom">
+            <span class="source-dot"></span>
+            <span>Evidence-led lookup</span>
+          </div>
+        </aside>
+
+        <main class="main-area">
+          <section id="compose-view" class="view">
+            <div class="page-heading">
+              <div>
+                <div class="eyebrow">LOOK UP & FORMAT</div>
+                <h1>New reference</h1>
+                <p>Search scholarly records, check the metadata, and shape a citation.</p>
+              </div>
+              <span class="heading-index">01 <span>/ 02</span></span>
+            </div>
+
+            <form id="citation-form" class="composer">
+              <div class="form-topline"><label for="reference-input">REFERENCE INPUT</label><span>DOI · title · URL · PMID · ISBN</span></div>
+              <textarea id="reference-input" maxlength="20000" placeholder="Paste a DOI, publication title, URL, PMID, ISBN, or an existing reference..." required></textarea>
+              <div class="form-footer"><span>One reference per line in batch mode</span><span id="char-count">0 / 20,000</span></div>
+
+              <div class="option-row">
+                <div class="option-heading"><span class="eyebrow">OUTPUT</span><span class="option-caption">Select one or more styles</span></div>
+                <div class="style-options" id="style-options">
+                  <label class="style-chip"><input type="checkbox" value="apa" checked><span>APA 7</span></label>
+                  <label class="style-chip"><input type="checkbox" value="chicago"><span>Chicago</span></label>
+                  <label class="style-chip"><input type="checkbox" value="mla"><span>MLA 9</span></label>
+                  <label class="style-chip"><input type="checkbox" value="harvard"><span>Harvard</span></label>
+                  <label class="style-chip"><input type="checkbox" value="vancouver"><span>Vancouver</span></label>
+                </div>
+              </div>
+
+              <div class="controls-row">
+                <div class="switch-group">
+                  <label class="toggle"><input id="batch-toggle" type="checkbox"><span class="toggle-track"></span><span>Batch mode</span></label>
+                  <label class="toggle"><input id="bibtex-toggle" type="checkbox" checked><span class="toggle-track"></span><span>BibTeX</span></label>
+                  <label class="toggle"><input id="validate-toggle" type="checkbox" checked><span class="toggle-track"></span><span>Validate output</span></label>
+                </div>
+                <button id="submit-button" class="primary-button" type="submit"><span>Generate references</span><span class="button-arrow">↗</span></button>
+              </div>
+            </form>
+
+            <div id="progress" class="progress-line" hidden><span class="progress-bar"></span><span id="progress-label">Searching sources…</span></div>
+            <section id="results" class="results" aria-live="polite" hidden></section>
+          </section>
+
+          <section id="library-view" class="view" hidden>
+            <div class="page-heading">
+              <div><div class="eyebrow">YOUR COLLECTION</div><h1>Saved library</h1><p>References you have kept for later.</p></div>
+              <button id="export-library" class="secondary-button" type="button">Download BibTeX <span>↓</span></button>
+            </div>
+            <div id="library-items" class="library-items"></div>
+          </section>
+        </main>
+      </div>
+      <footer class="page-footer"><span>REFERENCE DESK</span><span>Metadata from Crossref · OpenAlex · DataCite · PubMed · Open Library</span></footer>
+    </div>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
